@@ -7,12 +7,15 @@ public class NewBehaviourScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        var test = 2;
+        var test3 = 5;
         //TODO: Do cool stuff in here
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
