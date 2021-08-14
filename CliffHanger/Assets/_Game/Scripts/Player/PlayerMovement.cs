@@ -8,8 +8,6 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
 
-        var test = 2;
-        var test3 = 5;
         //TODO: Do cool stuff in here
     }
 
