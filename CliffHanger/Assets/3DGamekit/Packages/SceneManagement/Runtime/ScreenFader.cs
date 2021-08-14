@@ -60,7 +60,7 @@ namespace Gamekit3D
                 return;
             }
 
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         }
 
         protected IEnumerator Fade(float finalAlpha, CanvasGroup canvasGroup)
