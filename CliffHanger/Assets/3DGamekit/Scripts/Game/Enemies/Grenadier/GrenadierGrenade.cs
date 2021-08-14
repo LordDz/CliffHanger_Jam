@@ -32,13 +32,13 @@ namespace Gamekit3D
         protected Rigidbody m_RigidBody;
         protected ParticleSystem m_VFXInstance;
         int m_EnvironmentLayer = -1;
-        
+
         protected static Collider[] m_ExplosionHitCache = new Collider[32];
 
         private void Awake()
         {
             m_EnvironmentLayer = 1 << LayerMask.NameToLayer("Environment");
-            
+
             m_RigidBody = GetComponent<Rigidbody>();
             m_RigidBody.detectCollisions = false;
 
@@ -101,7 +101,8 @@ namespace Gamekit3D
                 damageSource = transform.position,
                 damager = this,
                 stopCamera = false,
-                throwing = true
+                throwing = true,
+                forceMultiplier = 10f,
             };
 
 
