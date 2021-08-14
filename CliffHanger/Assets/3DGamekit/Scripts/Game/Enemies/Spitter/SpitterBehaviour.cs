@@ -74,10 +74,10 @@ namespace Gamekit3D
         {
             Vector3 pushForce = transform.position - msg.damageSource;
 
-            pushForce.y = 0;
+            pushForce.y = 0f;
 
             transform.forward = -pushForce.normalized;
-            controller.AddForce(pushForce.normalized * 7.0f - Physics.gravity * 0.6f);
+            controller.AddForce(pushForce.normalized * (msg.forceMultiplier + 2f) - Physics.gravity * 0.6f);
 
             controller.animator.SetTrigger(hashHit);
             controller.animator.SetTrigger(hashThrown);
@@ -99,10 +99,10 @@ namespace Gamekit3D
 
             Vector3 pushForce = transform.position - msg.damageSource;
 
-            pushForce.y = 0;
+            pushForce.y = 0f;
 
             transform.forward = -pushForce.normalized;
-            controller.AddForce(pushForce.normalized * 5.5f, false);
+            controller.AddForce(pushForce.normalized * msg.forceMultiplier, false);
 
             controller.animator.SetFloat(hashVerticalDot, verticalDot);
             controller.animator.SetFloat(hashHorizontalDot, horizontalDot);
@@ -135,13 +135,13 @@ namespace Gamekit3D
             if (frontStepAudio != null && frontFoot == 1)
                 frontStepAudio.PlayRandomClip();
             else if (backStepAudio != null && frontFoot == 0)
-                backStepAudio.PlayRandomClip ();
+                backStepAudio.PlayRandomClip();
         }
 
-        public void Grunt ()
+        public void Grunt()
         {
             if (gruntAudio != null)
-                gruntAudio.PlayRandomClip ();
+                gruntAudio.PlayRandomClip();
         }
 
         public void Spotted()
@@ -176,7 +176,7 @@ namespace Gamekit3D
 
                 m_Fleeing = controller.SetTarget(fleePoint);
 
-                if(m_Fleeing)
+                if (m_Fleeing)
                     controller.animator.SetBool(hashFleeing, m_Fleeing);
             }
 
@@ -202,8 +202,8 @@ namespace Gamekit3D
         }
 #endif
     }
-    
-    
+
+
 #if UNITY_EDITOR
     [CustomEditor(typeof(SpitterBehaviour))]
     public class SpitterBehaviourEditor : Editor
@@ -221,9 +221,9 @@ namespace Gamekit3D
             {
                 EditorGUILayout.HelpBox("The scanner detection radius is smaller than the fleeing range.\n" +
                     "The spitter will never shoot at the player as it will flee past the range at which it can see the player",
-                    MessageType.Warning, true);    
+                    MessageType.Warning, true);
             }
-            
+
             base.OnInspectorGUI();
         }
     }

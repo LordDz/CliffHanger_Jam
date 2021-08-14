@@ -70,16 +70,16 @@ namespace Gamekit3D
             if (frontStepAudio != null && frontFoot == 1)
                 frontStepAudio.PlayRandomClip();
             else if (backStepAudio != null && frontFoot == 0)
-                backStepAudio.PlayRandomClip ();
+                backStepAudio.PlayRandomClip();
         }
 
         /// <summary>
         /// Called by animation events.
         /// </summary>
-        public void Grunt ()
+        public void Grunt()
         {
             if (gruntAudio != null)
-                gruntAudio.PlayRandomClip ();
+                gruntAudio.PlayRandomClip();
         }
 
         public void Spotted()
@@ -235,10 +235,10 @@ namespace Gamekit3D
         {
             Vector3 pushForce = transform.position - msg.damageSource;
 
-            pushForce.y = 0;
+            pushForce.y = 0f;
 
             transform.forward = -pushForce.normalized;
-            controller.AddForce(pushForce.normalized * 7.0f - Physics.gravity * 0.6f);
+            controller.AddForce(pushForce.normalized * (msg.forceMultiplier + 2.5f) - Physics.gravity * 0.6f);
 
             controller.animator.SetTrigger(hashHit);
             controller.animator.SetTrigger(hashThrown);
@@ -260,10 +260,10 @@ namespace Gamekit3D
 
             Vector3 pushForce = transform.position - msg.damageSource;
 
-            pushForce.y = 0;
+            pushForce.y = 0f;
 
             transform.forward = -pushForce.normalized;
-            controller.AddForce(pushForce.normalized * 5.5f, false);
+            controller.AddForce(pushForce.normalized * msg.forceMultiplier, false);
 
             controller.animator.SetFloat(hashVerticalDot, verticalDot);
             controller.animator.SetFloat(hashHorizontalDot, horizontalDot);

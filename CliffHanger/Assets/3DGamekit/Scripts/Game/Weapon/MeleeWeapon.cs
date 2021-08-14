@@ -8,6 +8,7 @@ namespace Gamekit3D
     public class MeleeWeapon : MonoBehaviour
     {
         public int damage = 1;
+        public float damageForceMultiplier = 8f;
 
         [System.Serializable]
         public class AttackPoint
@@ -176,11 +177,11 @@ namespace Gamekit3D
             {
                 var renderer = other.GetComponent<Renderer>();
                 if (!renderer)
-                    renderer = other.GetComponentInChildren<Renderer> ();
+                    renderer = other.GetComponentInChildren<Renderer>();
                 if (renderer)
-                    hitAudio.PlayRandomClip (renderer.sharedMaterial);
+                    hitAudio.PlayRandomClip(renderer.sharedMaterial);
                 else
-                    hitAudio.PlayRandomClip ();
+                    hitAudio.PlayRandomClip();
             }
 
             Damageable.DamageMessage data;
@@ -190,6 +191,7 @@ namespace Gamekit3D
             data.direction = m_Direction.normalized;
             data.damageSource = m_Owner.transform.position;
             data.throwing = m_IsThrowingHit;
+            data.forceMultiplier = damageForceMultiplier;
             data.stopCamera = false;
 
             d.ApplyDamage(data);

@@ -33,7 +33,11 @@ namespace Gamekit3D
             m_EmissionRate = m_Emission.rateOverTime.constant;
             m_Emission.rateOverTimeMultiplier = 0;
 
-
+            Rigidbody body1 = GetComponent<Rigidbody>();
+            if (body1)
+            {
+                body1.AddForce(new Vector3(0, 22f, 0));
+            }
             m_Timer = 0;
 
             m_StartTime = Time.time + Random.Range(minStartTime, maxStartTime);

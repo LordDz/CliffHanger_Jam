@@ -26,12 +26,14 @@ namespace Gamekit3D
 
         private void Update()
         {
-            Damageable.DamageMessage data;
-            data.damageSource = transform.position;
-            data.amount = 1;
-            data.damager = this;
-            data.stopCamera = false;
-            data.throwing = true;
+            Damageable.DamageMessage dmgData = new Damageable.DamageMessage()
+            {
+                amount = 1,
+                damager = this,
+                stopCamera = false,
+                forceMultiplier = 1.0f
+            };
+
 
             int count = Physics.OverlapSphereNonAlloc(transform.position, m_Collider.radius * transform.localScale.x,
                 sOverlapCache, m_PlayerMask);
@@ -42,8 +44,8 @@ namespace Gamekit3D
 
                 if (d != null)
                 {
-                    data.direction = d.transform.position - transform.position;
-                    d.ApplyDamage(data);
+                    dmgData.direction = d.transform.position - transform.position;
+                    d.ApplyDamage(dmgData);
                 }
             }
         }

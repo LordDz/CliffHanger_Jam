@@ -14,6 +14,7 @@ Also Remember to place that object in a layer that collide with what you want to
 ";
 
         public int amount;
+        public float forceMultiplier = 8f;
         public LayerMask damagedLayers;
 
         private void OnTriggerStay(Collider other)
@@ -31,7 +32,8 @@ Also Remember to place that object in a layer that collide with what you want to
                     damager = this,
                     amount = amount,
                     direction = (other.transform.position - transform.position).normalized,
-                    throwing = false
+                    throwing = false,
+                    forceMultiplier = forceMultiplier
                 };
 
                 d.ApplyDamage(message);

@@ -18,8 +18,10 @@ GameObject:
   - component: {fileID: 114858556884115054}
   - component: {fileID: 114821708130241382}
   - component: {fileID: 6596375698896929942}
+  - component: {fileID: 3255953434991521678}
+  - component: {fileID: 4529183520581566611}
   m_Layer: 24
-  m_Name: CameraBrain
+  m_Name: Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -328,7 +330,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cfuStatus: PSXEffects v1.18.1 - up to date.
   sections: 01010101
-  customRes: {x: 863, y: 308}
+  customRes: {x: 750, y: 313}
   resolutionFactor: 2
   limitFramerate: 60
   skipFrames: 0
@@ -357,6 +359,145 @@ MonoBehaviour:
   shadowType: 0
   ditherSky: 0
   ditherType: 0
+--- !u!82 &3255953434991521678
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039473416030948}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &4529183520581566611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039473416030948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cd7987c88867264a8210f93a54101c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _start: 0
+  startWaterID: 0
+  ignoreCollisionOnWaterLayer: 1
+  detectionMode: 4
+  waters:
+  - waterName: WaterName
+    waterTag: Respawn
+    waterHeight: 5
+    waterLayer:
+      serializedVersion: 2
+      m_Bits: 16
+    rayCastDistance: 15
+    automaticWaterID: 0
+    waterColor: {r: 0.05, g: 0.5, b: 0.5, a: 0}
+    vortexDistortion: 0.45
+    fisheyeDistortion: 0.3
+    distortionSpeed: 0.2
+    colorIntensity: 0.4
+    visibility: 7
+    disableBlur: 0
+  disableDropsOnScreen: 0
+  waterDropsTexture: {fileID: 2800000, guid: 1224211413c8e474f964b1b80eff6485, type: 3}
+  audioSourceVolume: 1
+  soundToEnter: {fileID: 8300000, guid: 75ee3b2221105fc4593c02b43b961903, type: 3}
+  soundToExit: {fileID: 8300000, guid: e26bf7224d5e945498c4d609586ef978, type: 3}
+  underWaterSound: {fileID: 8300000, guid: 26bf85987c189034b8a79b2c4f808415, type: 3}
+  SrBlur: {fileID: 4800000, guid: e560ca3a2014913459609887285bc03f, type: 3}
+  SrEdge: {fileID: 4800000, guid: 5d140e9ca54cfe84884d6edb09b222cc, type: 3}
+  SrFisheye: {fileID: 4800000, guid: 2d043023582f82f4a9265e82dd19c270, type: 3}
+  SrVortex: {fileID: 4800000, guid: ab19d27e28c6798468082a1b08f2b4a5, type: 3}
+  SrQuad: {fileID: 4800000, guid: 268eb504cabe0514d9e0d052118fce2d, type: 3}
 --- !u!1 &1050271274822570
 GameObject:
   m_ObjectHideFlags: 0

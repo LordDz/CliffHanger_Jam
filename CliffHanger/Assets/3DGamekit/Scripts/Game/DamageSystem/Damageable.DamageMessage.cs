@@ -11,8 +11,9 @@ namespace Gamekit3D
             public Vector3 direction;
             public Vector3 damageSource;
             public bool throwing;
+            public float forceMultiplier;
 
             public bool stopCamera;
         }
-    } 
+    }
 }
