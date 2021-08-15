@@ -248,7 +248,7 @@ namespace Gamekit3D
         // Called each physics step with a parameter based on the return value of IsWeaponEquiped.
         void EquipMeleeWeapon(bool equip)
         {
-            meleeWeapon.gameObject.SetActive(equip);
+            meleeWeapon.gameObject.SetActive(true);
             m_InAttack = false;
             m_InCombo = equip;
 
