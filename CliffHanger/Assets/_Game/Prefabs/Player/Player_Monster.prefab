@@ -7120,7 +7120,7 @@ GameObject:
   - component: {fileID: 114298887321203036}
   - component: {fileID: 114642486581907182}
   m_Layer: 9
-  m_Name: Staff
+  m_Name: Weapon_Staff
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7176,7 +7176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  damageForceMultiplier: 80
+  damageForceMultiplier: 10
   hitParticlePrefab: {fileID: 198200190501009950, guid: 400e06051701a8c4998087ae421728e3,
     type: 3}
   targetLayers:
@@ -22085,7 +22085,7 @@ MonoBehaviour:
   minTurnSpeed: 400
   maxTurnSpeed: 1200
   idleTimeout: 5
-  canAttack: 0
+  canAttack: 1
   cameraSettings: {fileID: 0}
   meleeWeapon: {fileID: 114298887321203036}
   footstepPlayer: {fileID: 114094828976615078}
