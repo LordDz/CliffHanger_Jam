@@ -3519,7 +3519,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0149b5ab8f608c943b260125ac76d875, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHitPoints: 3
+  maxHitPoints: 2
   invulnerabiltyTime: 0
   hitAngle: 360
   hitForwardRotation: 360

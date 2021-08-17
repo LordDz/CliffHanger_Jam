@@ -110,6 +110,11 @@ namespace Gamekit3D
             this.canAttack = canAttack;
         }
 
+        void Start()
+        {
+            cameraSettings = FindObjectOfType<CameraSettings>();
+        }
+
         // Called automatically by Unity when the script is first added to a gameobject or is reset from the context menu.
         void Reset()
         {
@@ -127,7 +132,6 @@ namespace Gamekit3D
             if (landingSource != null)
                 landingPlayer = landingSource.GetComponent<RandomAudioPlayer>();
 
-            cameraSettings = FindObjectOfType<CameraSettings>();
 
             if (cameraSettings != null)
             {
@@ -190,7 +194,10 @@ namespace Gamekit3D
             m_Animator.ResetTrigger(m_HashMeleeAttack);
 
             if (m_Input.Attack && canAttack)
+            {
                 m_Animator.SetTrigger(m_HashMeleeAttack);
+
+            }
 
             CalculateForwardMovement();
             CalculateVerticalMovement();
@@ -241,7 +248,7 @@ namespace Gamekit3D
         // Called each physics step with a parameter based on the return value of IsWeaponEquiped.
         void EquipMeleeWeapon(bool equip)
         {
-            meleeWeapon.gameObject.SetActive(equip);
+            meleeWeapon.gameObject.SetActive(true);
             m_InAttack = false;
             m_InCombo = equip;
 
@@ -306,7 +313,7 @@ namespace Gamekit3D
                 {
                     m_VerticalSpeed = 0f;
                 }
-                
+
                 // If Ellen is airborne, apply gravity.
                 m_VerticalSpeed -= gravity * Time.deltaTime;
             }
@@ -318,13 +325,13 @@ namespace Gamekit3D
             // Create three variables, move input local to the player, flattened forward direction of the camera and a local target rotation.
             Vector2 moveInput = m_Input.MoveInput;
             Vector3 localMovementDirection = new Vector3(moveInput.x, 0f, moveInput.y).normalized;
-            
+
             Vector3 forward = Quaternion.Euler(0f, cameraSettings.Current.m_XAxis.Value, 0f) * Vector3.forward;
             forward.y = 0f;
             forward.Normalize();
 
             Quaternion targetRotation;
-            
+
             // If the local movement direction is the opposite of forward then the target rotation should be towards the camera.
             if (Mathf.Approximately(Vector3.Dot(localMovementDirection, Vector3.forward), -1.0f))
             {
@@ -379,7 +386,7 @@ namespace Gamekit3D
                 {
                     // The desired forward is the direction to the closest enemy.
                     resultingForward = closestForward;
-                    
+
                     // We also directly set the rotation, as we want snappy fight and orientation isn't updated in the UpdateOrientation function during an atatck.
                     transform.rotation = Quaternion.LookRotation(resultingForward);
                 }
@@ -504,7 +511,7 @@ namespace Gamekit3D
                 {
                     // ... and get the movement of the root motion rotated to lie along the plane of the ground.
                     movement = Vector3.ProjectOnPlane(m_Animator.deltaPosition, hit.normal);
-                    
+
                     // Also store the current walking surface so the correct audio is played.
                     Renderer groundRenderer = hit.collider.GetComponentInChildren<Renderer>();
                     m_CurrentWalkingSurface = groundRenderer ? groundRenderer.sharedMaterial : null;
@@ -543,7 +550,7 @@ namespace Gamekit3D
             // Send whether or not Ellen is on the ground to the animator.
             m_Animator.SetBool(m_HashGrounded, m_IsGrounded);
         }
-        
+
         // This is called by an animation event when Ellen swings her staff.
         public void MeleeAttackStart(int throwing = 0)
         {
@@ -570,7 +577,7 @@ namespace Gamekit3D
         {
             StartCoroutine(RespawnRoutine());
         }
-        
+
         protected IEnumerator RespawnRoutine()
         {
             // Wait for the animator to be transitioning from the EllenDeath state.
@@ -578,7 +585,7 @@ namespace Gamekit3D
             {
                 yield return null;
             }
-            
+
             // Wait for the screen to fade out.
             yield return StartCoroutine(ScreenFader.FadeSceneOut());
             while (ScreenFader.IsFading)
@@ -600,17 +607,17 @@ namespace Gamekit3D
             {
                 Debug.LogError("There is no Checkpoint set, there should always be a checkpoint set. Did you add a checkpoint at the spawn?");
             }
-            
+
             // Set the Respawn parameter of the animator.
             m_Animator.SetTrigger(m_HashRespawn);
-            
+
             // Start the respawn graphic effects.
             spawn.StartEffect();
-            
+
             // Wait for the screen to fade in.
             // Currently it is not important to yield here but should some changes occur that require waiting until a respawn has finished this will be required.
             yield return StartCoroutine(ScreenFader.FadeSceneIn());
-            
+
             m_Damageable.ResetDamage();
         }
 
@@ -618,7 +625,7 @@ namespace Gamekit3D
         public void RespawnFinished()
         {
             m_Respawning = false;
-            
+
             //we set the damageable invincible so we can't get hurt just after being respawned (feel like a double punitive)
             m_Damageable.isInvulnerable = false;
         }
